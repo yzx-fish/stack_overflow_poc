@@ -6,13 +6,13 @@ port = 8888
 host = "192.168.27.128"
 
 
-def client(len=None, date=None):
+def client(len=None, data=None):
     sock = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
     sock.connect((host, port))
     if len is not None:
         sock.send("a"*len)
     else:
-        sock.send(date)
+        sock.send(data)
     data = sock.recv(1024)[:-1]
     print map(hex, map(ord, data))
     sock.close()
@@ -32,6 +32,6 @@ if "__main__" == __name__:
         if "-L" in sys.argv:
             client(len=int(sys.argv[2]))
         elif "-D" in sys.argv:
-            client(date=sys.argv[2])
+            client(data=sys.argv[2])
     except:
         arg_help()
