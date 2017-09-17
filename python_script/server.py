@@ -22,7 +22,7 @@ def create_process(cmd, run_as_root=False, addl_env=None):
     if addl_env is None:
         addl_env = []
     else:
-        addl_env = ['env'] + ['%s=%s' % pair for pair in addl_env.items()]
+        addl_env = ['env'] + ['%s=%s' % pair for pair in addl_env.iteritems()]
     cmd = list(map(str, addl_env + cmd))
     if run_as_root:
         cmd = ['sudo'] + cmd
@@ -55,4 +55,3 @@ def server():
 
 if __name__ == "__main__":
     server()
-
